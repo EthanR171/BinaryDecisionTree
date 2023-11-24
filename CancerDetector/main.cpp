@@ -85,14 +85,7 @@ void loadFromCsv(const string& filename, Patient::PatientList& list) {
 	sourceFile.close();
 }
 
-
-void saveToCsv(const string& filename, Patient::PatientList& list, int* iCount, int* bCount, int* mCount) {
-	ofstream ofile(filename);
-	if (!ofile) {
-		std::cerr << "Error: Could not open \"" << filename << "\" for writing! [\033[31mFAILED\033[0m]\n"; //red for cool looks
-		exit(EXIT_FAILURE);
-	}
-
+void declassifyInvalid(Patient::PatientList& list, int* iCount, int* bCount, int* mCount) {
 	// check if we are dealing with an invalid patient.
 	for (auto& p : list) {
 
@@ -121,9 +114,20 @@ void saveToCsv(const string& filename, Patient::PatientList& list, int* iCount, 
 				++(*mCount); // Malignant count
 		}
 
-		ofile << p;
+	}
+}
+
+
+void saveToCsv(const string& filename, Patient::PatientList const& list) {
+	ofstream ofile(filename);
+	if (!ofile) {
+		std::cerr << "Error: Could not open \"" << filename << "\" for writing! [\033[31mFAILED\033[0m]\n"; //red for cool looks
+		exit(EXIT_FAILURE);
 	}
 
+	for (const auto& p : list) 
+		ofile << p;
+	
 	cout << "Patients saved to '" << filename << "' [\033[32mSUCCESS\033[0m]\n";
 
 	ofile.close();
@@ -148,7 +152,9 @@ int main() {
 		p.setseverity(i);
 	}
 
-	saveToCsv(outputFile, patientList, &invalidCount, &benignCount, &malignantCount);
+	declassifyInvalid(patientList, &invalidCount, &benignCount, &malignantCount);
+
+	saveToCsv(outputFile, patientList);
 
 
 	cout << "Total patients processed: " << patientList.size() << endl;
