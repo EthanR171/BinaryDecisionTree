@@ -85,6 +85,7 @@ void loadFromCsv(const string& filename, Patient::PatientList& list) {
 	sourceFile.close();
 }
 
+/* gets patient counts based on default values contained for invalid patients */
 void declassifyInvalid(Patient::PatientList& list, int* iCount, int* bCount, int* mCount) {
 	// check if we are dealing with an invalid patient.
 	for (auto& p : list) {
