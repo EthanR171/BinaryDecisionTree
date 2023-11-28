@@ -88,7 +88,7 @@ void loadFromCsv(const string& filename, Patient::PatientList& list) {
 
 
 
-	std::cout << "Patients loaded from '" << filename << "' [\033[32mSUCCESS\033[0m]\n"; //green color for cool looks
+	std::cout << "Patients loaded from '" << filename.substr(2,filename.length()) << "' [\033[32mSUCCESS\033[0m]\n"; //green color for cool looks
 
 	sourceFile.close();
 }
@@ -148,7 +148,7 @@ void saveToCsv(const string& filename, Patient::PatientList const& list) {
 	for (const auto& p : list) 
 		ofile << p;
 	
-	cout << "Patients saved to '" << filename << "' [\033[32mSUCCESS\033[0m]\n";
+	cout << "Patients saved to '" << filename.substr(2, filename.length()) << "' [\033[32mSUCCESS\033[0m]\n";
 
 	ofile.close();
 }
