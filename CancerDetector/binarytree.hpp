@@ -2,6 +2,7 @@
 	\brief	class for binary decision tree structure.
 	\author	Ethan Rivers
 	\date	2023-11-22
+	\note C++ 20 Application
 */
 #pragma once
 #include <iostream>

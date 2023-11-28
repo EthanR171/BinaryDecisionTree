@@ -2,6 +2,7 @@
 	\brief	main application.
 	\author	Ethan Rivers
 	\date	2023-11-22
+	\note C++ 20 Application
 */
 #include "binarytree.hpp"
 #include <string>
@@ -97,10 +98,10 @@ void loadFromCsv(const string& filename, Patient::PatientList& list) {
 	@param PatientList&, int*, int*, int*
 	@return void
 	@note finds all invalid patients in list based on default values and
-		  increments counts accordingly
+		  increments counts accordingly. stream insertion operator will handle invalid replacement for us.
 */
 void declassifyInvalid(Patient::PatientList& list, int* iCount, int* bCount, int* mCount) {
-	// check if we are dealing with an invalid patient.
+	
 	for (auto& p : list) {
 
 		bool isInvalid = false;
