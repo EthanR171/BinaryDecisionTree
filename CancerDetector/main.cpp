@@ -10,6 +10,13 @@
 #include <exception>
 using namespace std;
 
+/*
+	@name loadFromCsv
+	@param const string&, PatientList&
+	@return void
+	@note will mark invalid fields on each patient with default value of -1 
+		  for future processing.
+*/
 void loadFromCsv(const string& filename, Patient::PatientList& list) {
 
 	ifstream sourceFile(filename);
@@ -85,7 +92,13 @@ void loadFromCsv(const string& filename, Patient::PatientList& list) {
 	sourceFile.close();
 }
 
-/* gets patient counts based on default values contained for invalid patients */
+/*
+	@name declassifyInvalid
+	@param PatientList&, int*, int*, int*
+	@return void
+	@note finds all invalid patients in list based on default values and
+		  increments counts accordingly
+*/
 void declassifyInvalid(Patient::PatientList& list, int* iCount, int* bCount, int* mCount) {
 	// check if we are dealing with an invalid patient.
 	for (auto& p : list) {
@@ -118,7 +131,12 @@ void declassifyInvalid(Patient::PatientList& list, int* iCount, int* bCount, int
 	}
 }
 
-
+/*
+	@name saveToCsv
+	@param const string&, const PatientList&
+	@return void
+	@note saves patients to a file using custom stream insertion operator
+*/
 void saveToCsv(const string& filename, Patient::PatientList const& list) {
 	ofstream ofile(filename);
 	if (!ofile) {

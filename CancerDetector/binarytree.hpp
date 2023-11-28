@@ -33,7 +33,11 @@ class BinaryDecisionTree {
 
 	};
 
-
+	/*
+	@name free_node
+	@param Node*
+	@return void
+	*/
 	void free_node(Node* node)
 	{
 		if (!node) return;
@@ -42,7 +46,13 @@ class BinaryDecisionTree {
 		delete node;
 	}
 
-	/* private helper fucntion that will create nodes then give us the head */
+	/*
+	@name generateNodes
+	@param void
+	@return Node*
+	@note builds the tree structure stuffing each node with a function that patients 
+		  will be compared against. returns the head of the tree once done building tree.
+	*/
 	Node* generateNodes() {
 		// conditions that will each patient will later be tested against
 		auto c1 = [](const Patient& p) { return p.cellsizeunif() <= 2; };
@@ -131,7 +141,13 @@ public:
 
 
 
-	/* traverses the tree and gets the type of cancer benign(2) malignant(4)*/
+	/*
+	@name getTypeOfCancer
+	@param const Patient&
+	@author Ethan Rivers
+	@note traverses the tree comparing a patient against node conditions.
+		  will determine if the cancer is benign or malignant
+	*/
 	int getTypeOfCancer(const Patient& p) {
 		if (!rootNode_)
 			exit(EXIT_FAILURE);
