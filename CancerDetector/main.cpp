@@ -140,8 +140,8 @@ int main() {
 	BinaryDecisionTree<Patient> dataMiner;
 	Patient::PatientList patientList;
 
-	string inputFile = "unformatted_data_v1.0.0.csv";
-	string outputFile = "results.csv";
+	string inputFile = "./unformatted_data_v1.0.0.csv";
+	string outputFile = "./results.csv";
 
 	int benignCount{ 0 }, malignantCount{ 0 }, invalidCount{ 0 };
 
